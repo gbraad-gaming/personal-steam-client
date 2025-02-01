@@ -10,12 +10,8 @@ RUN dnf install -y \
     && dnf install -y \
         steam \
     && dnf clean all \
-    && rm -rf /var/cache/yum
+    && rm -rf /var/cache/yum \
+    && git config -f /etc/rdesktop/rdesktop.ini rdesktop.title "Personal Steam" \
+    && git config -f /etc/rdesktop/rdesktop.ini rdesktop.exec "/usr/bin/steam"
 
-USER gbraad
-
-RUN echo "exec /usr/bin/steam" >> $HOME/.config/i3/config
-
-# ensure to become root for systemd
-USER root
 #ENTRYPOINT ["/sbin/init"]
